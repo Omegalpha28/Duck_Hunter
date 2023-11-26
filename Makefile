@@ -5,6 +5,15 @@
 ## SIUUUUUUUUUU look at this Makefile it work.
 ##
 
+SRC = analyse_event.c \
+	animation.c \
+	in_game.c \
+	music.c \
+	my_hunter.c \
+	sprite_game.c \
+	sprite_menu.c \
+	my_gameplay.c
+
 FILE_O = *.o
 LIBMY_A = libmy.a
 INCLUDE = include
@@ -12,11 +21,12 @@ CONV = $(SRCS:.c=.o)
 MY_HUNTER = my_hunter
 CFLAGS = -lcsfml-graphics -lcsfml-system -lcsfml-window -lcsfml-audio
 
+
 $(LIBMY_A):
-	gcc -c window.c -Iinclude
+	gcc -c $(SRC) -Iinclude
 	ar rcs $(LIBMY_A) $(FILE_O)
 	gcc -c my_hunter.c $(LIBMY_A) -Iinclude
-	gcc -o $(MY_HUNTER) my_hunter.c $(CFLAGS) $(LIBMY_A) -Iinclude
+	gcc -o $(MY_HUNTER) my_hunter.c $(CFLAGS) $(LIBMY_A) -Iinclude -g3
 	make clean
 
 clean:
