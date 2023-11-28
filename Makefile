@@ -12,7 +12,8 @@ SRC = analyse_event.c \
 	my_hunter.c \
 	sprite_game.c \
 	sprite_menu.c \
-	my_gameplay.c
+	my_gameplay.c \
+	my_display_in_game.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a

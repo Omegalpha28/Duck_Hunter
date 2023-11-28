@@ -41,6 +41,8 @@ void play_only_one_music(music *el_music);
 void sprite_size(sfSprite *sprite, sfVector2f scale, sfVector2f pos);
 void main_menu(sfRenderWindow *window);
 void sprite_menu(sfRenderWindow *window, sprite *background);
+void my_display_in_game(sfRenderWindow *window, sprite *duck,
+    sprite *background_game, sprite *crosshair);
 void my_song(music *el_music, char *my_path);
 void end_of_the_window(sfRenderWindow *window, music *music);
 void my_sprite_display(sfRenderWindow *window, sprite *sprite, char *my_path);
@@ -49,10 +51,17 @@ void in_game(sfRenderWindow *window, sprite *land, sprite *duck,
     sprite *crosshair);
 void analyse_events_game(sfRenderWindow *window, music *music,
     sprite *crosshair);
+void my_display_score(sfRenderWindow *window, sprite *score);
 void mouse_pos_cible(sfRenderWindow *window, music *music,
     sprite *crosshair);
 void create_crosshair(sprite *crosshair);
+void running_sprite(sfRenderWindow *window, sprite *my_sprite, sprite *cross);
 void my_sprite(sprite *sprite, char *path, int size_x, int size_y);
 void tot_size_sprite(sprite *sprite, int tot_size_x, int tot_size_y);
 void display_sprite(sfRenderWindow *window, sprite *sprite);
+void playing_animation(sprite *sprite);
+int verif_music_game(music *music, int i, int size);
+void animation(sprite *sprite);
+void init_score(sprite *score);
+void scale_origins(sprite *sprite);
 #endif
