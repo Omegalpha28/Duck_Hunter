@@ -24,10 +24,15 @@ void my_sprite(sprite *sprite, char *path, int size_x, int size_y)
 void create_crosshair(sprite *crosshair)
 {
     sfVector2f scale = {0.1, 0.1};
+    float x;
+    float y;
 
     my_sprite(crosshair, "canard/crosshair.png", 1200, 1200);
     tot_size_sprite(crosshair, 1200, 1200);
     sfSprite_setScale(crosshair->sprite, scale);
+    x = sfSprite_getLocalBounds(crosshair->sprite).height / 2;
+    y = sfSprite_getLocalBounds(crosshair->sprite).width / 2;
+    sfSprite_setOrigin(crosshair->sprite, (sfVector2f){x, y});
 }
 
 void mouse_pos_cible(sfRenderWindow *window, music *music,
@@ -54,25 +59,22 @@ void analyse_events_game(sfRenderWindow *window, music *music,
 void in_game(sfRenderWindow *window, sprite *background_game, sprite *duck,
     sprite *crosshair)
 {
-    music *music;
-    int size = init_my_playlist(music);
+    sprite score;
+    music music;
+    int size = init_my_playlist(&music);
     int i = 0;
 
-    play_playlist(music, i);
+    init_score(&score);
+    animation(duck);
+    play_playlist(&music, i);
     while (sfRenderWindow_isOpen(window)) {
-        analyse_events_game(window, music, crosshair);
-        display_sprite(window, background_game);
-        display_sprite(window, duck);
-        display_sprite(window, crosshair);
+        analyse_events_game(window, &music, crosshair);
+        running_sprite(window, duck, crosshair);
+        my_display_in_game(window, duck, background_game, crosshair);
+        my_display_score(window, &score);
         sfRenderWindow_display(window);
-        if (sfMusic_getStatus(music[i].music) != sfPlaying && i < size) {
-            i++;
-            play_playlist(music, i);
-        }
-        if (sfMusic_getStatus(music[i].music) != sfPlaying && i == size){
-            i = 0;
-            play_playlist(music, i);
-        }
+        i = verif_music_game(&music, i, size);
+        scale_origins(crosshair);
     }
-    destroy_music(music, size);
+    destroy_music(&music, size);
 }

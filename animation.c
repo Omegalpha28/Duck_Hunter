@@ -5,6 +5,7 @@
 ** the filename say everything
 */
 #include "my_hunter.h"
+#include <stdlib.h>
 
 void animation(sprite *sprite)
 {
@@ -20,4 +21,41 @@ void playing_animation(sprite *sprite)
         sprite->rect_source_sprite.left = 0;
     }
     sfSprite_setTextureRect(sprite->sprite, sprite->rect_source_sprite);
+}
+
+void new_scale(sprite *crosshair)
+{
+    sfVector2f scale = {0.18, 0.18};
+
+    sfSprite_setScale(crosshair->sprite, scale);
+}
+
+void running_sprite(sfRenderWindow *window, sprite *my_sprite, sprite *cross)
+{
+    sfVector2i mposi = sfMouse_getPositionRenderWindow(window);
+    sfVector2f mpos = sfSprite_getPosition(my_sprite->sprite);
+    sfVector2f newSpritePosition = {(float)mpos.x, (float)mpos.y};
+
+    mpos.x += 0.6;
+    if (mpos.x >= 1920) {
+        mpos.x = 0;
+        mpos.y = 0 + rand() % (900 + 1 - 0);
+    }
+    if (sfMouse_isButtonPressed(sfMouseLeft)) {
+        if (mposi.x <= (mpos.x + 55) && mposi.x >= (mpos.y - 55)
+            && mposi.y <= (mpos.y + 55) && mposi.y >= (mpos.y - 75)){
+            new_scale(cross);
+            mpos.x = 0;
+            mpos.y = 0 + rand() % (900 + 1 - 0);
+        }
+    }
+    newSpritePosition = (sfVector2f){(float)mpos.x, (float)mpos.y};
+    sfSprite_setPosition(my_sprite->sprite, newSpritePosition);
+}
+
+void scale_origins(sprite *sprite)
+{
+    sfVector2f origins = {0.1, 0.1};
+
+    sfSprite_setScale(sprite->sprite, origins);
 }

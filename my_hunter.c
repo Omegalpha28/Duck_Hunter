@@ -27,12 +27,10 @@ void main_menu(sfRenderWindow *window)
         sfRenderWindow_display(window);
         sfRenderWindow_drawSprite(window, background.sprite, NULL);
     }
-    end_of_the_window(window, &m);
 }
 
 int main(int ac, char **av)
 {
-    windows *w;
     sfVideoMode video_mode = {1920, 1080, 32};
     sfRenderWindow *window = sfRenderWindow_create(video_mode, "MY HUNTER",
         sfResize | sfClose , NULL);
