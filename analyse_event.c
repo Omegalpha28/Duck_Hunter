@@ -17,9 +17,7 @@ void mouse_pos(sfRenderWindow *window, music *music)
     sfVector2i mpos = sfMouse_getPositionRenderWindow(window);
 
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
-        printf("Clic de la souris à la position : (%d, %d)\n", mpos.x, mpos.y);
         if (mpos.x <= 990 && mpos.x >= 815 && mpos.y <= 775 && mpos.y >= 700) {
-            printf("Dans la zone bg\n");
             sfMusic_stop(music->music);
             sfMusic_destroy(music->music);
             my_gameplay(window);
