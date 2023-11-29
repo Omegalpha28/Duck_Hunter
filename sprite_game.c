@@ -13,7 +13,6 @@
 
 void display_sprite(sfRenderWindow *window, sprite *sprite)
 {
-    printf("ok\n");
     sfRenderWindow_drawSprite(window, sprite->sprite, NULL);
 }
 
