@@ -36,8 +36,12 @@ int main(int ac, char **av)
         sfResize | sfClose , NULL);
 
     if (ac > 1) {
+        if (ac == 2) {
+            return (is_help(av));
+        } else {
         write(2, "Too arguments!!", 16);
         return 84;
+        }
     }
     main_menu(window);
     return 0;

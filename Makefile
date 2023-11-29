@@ -13,7 +13,10 @@ SRC = analyse_event.c \
 	sprite_game.c \
 	sprite_menu.c \
 	my_gameplay.c \
-	my_display_in_game.c
+	my_display_in_game.c \
+	help.c \
+	mpsomething.c \
+	my_strcmp.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a
