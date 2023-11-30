@@ -71,7 +71,7 @@ void in_game(sfRenderWindow *window, sprite *background_game, sprite *duck,
         analyse_events_game(window, &music, crosshair);
         running_sprite(window, duck, crosshair);
         my_display_in_game(window, duck, background_game, crosshair);
-        my_display_score(window, &score);
+        my_display_score(window, &score, duck);
         sfRenderWindow_display(window);
         i = verif_music_game(&music, i, size);
         scale_origins(crosshair);

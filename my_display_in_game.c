@@ -45,3 +45,10 @@ void my_display_score(sfRenderWindow *window, sprite *score, sprite *duck)
         playing_tab_animation(score);
     }
 }
+
+void scale_origins(sprite *sprite)
+{
+    sfVector2f origins = {0.1, 0.1};
+
+    sfSprite_setScale(sprite->sprite, origins);
+}

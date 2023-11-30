@@ -23,6 +23,16 @@ void playing_animation(sprite *sprite)
     sfSprite_setTextureRect(sprite->sprite, sprite->rect_source_sprite);
 }
 
+void playing_tab_animation(sprite *sprite)
+{
+    sprite->rect_source_sprite.left += sprite->size_x;
+    if (sprite->rect_source_sprite.left > sprite->tot_size_x) {
+        sprite->rect_source_sprite.left = 0;
+        sprite->rect_source_sprite.top += sprite->size_y;
+    }
+    sfSprite_setTextureRect(sprite->sprite, sprite->rect_source_sprite);
+}
+
 void new_scale(sprite *crosshair)
 {
     sfVector2f scale = {0.18, 0.18};
@@ -44,18 +54,10 @@ void running_sprite(sfRenderWindow *window, sprite *my_sprite, sprite *cross)
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
         if (mposi.x <= (mpos.x + 55) && mposi.x >= (mpos.y - 55)
             && mposi.y <= (mpos.y + 55) && mposi.y >= (mpos.y - 75)){
-            new_scale(cross);
             mpos.x = 0;
             mpos.y = 0 + rand() % (900 + 1 - 0);
         }
     }
     newSpritePosition = (sfVector2f){(float)mpos.x, (float)mpos.y};
     sfSprite_setPosition(my_sprite->sprite, newSpritePosition);
-}
-
-void scale_origins(sprite *sprite)
-{
-    sfVector2f origins = {0.1, 0.1};
-
-    sfSprite_setScale(sprite->sprite, origins);
 }
