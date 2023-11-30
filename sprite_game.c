@@ -24,7 +24,7 @@ void tot_size_sprite(sprite *sprite, int tot_size_x, int tot_size_y)
 
 void init_score(sprite *score)
 {
-    sfVector2f newSpritePosition = {1800.0f, 10.0f};
+    sfVector2f newSpritePosition = {1800, 10};
 
     my_sprite(score, "canard/number.png", 101, 103);
     animation(score);

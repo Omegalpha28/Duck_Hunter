@@ -33,7 +33,7 @@ int main(int ac, char **av)
 {
     sfVideoMode video_mode = {1920, 1080, 32};
     sfRenderWindow *window = sfRenderWindow_create(video_mode, "MY HUNTER",
-        sfResize | sfClose , NULL);
+        sfClose , NULL);
 
     if (ac > 1) {
         if (ac == 2) {
